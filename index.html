@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+ <div class="maincon">
+      <h1> Generate a  <br> <span>Password</span></h1>
+      <div class="inputbox">
+        <input type="text" id="Password" placeholder="Password" readonly >
+        <img src="copy.png"  onclick="copy()" >
+      </div>
+      <div class="btn">
+      <button onclick="rampass()">Generate</button>
+    </div>
+ </div>
+</body>
+<script>
+   
+    const Passwordgen = document.getElementById("Password");
+    const length = 8;
+    
+   const uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+   const lowercase = "abcdefghijklmnopqrstuvwxyz";
+   const num = "0123456789";
+   const allset = uppercase + lowercase + num;
+   
+    function rampass()
+    {
+      let Password ="";
+       Password += uppercase[Math.floor(Math.random() * uppercase.length)];
+       Password += lowercase[Math.floor(Math.random() * lowercase.length)];
+       Password += num[Math.floor(Math.random() * num.length)];
+      
+       while(length > Password.length)
+     {
+       Password += allset[Math.floor(Math.random() * allset.length)];
+     }
+       Passwordgen.value = Password;
+    }
+        
+      function copy()
+      {
+        Passwordgen.select();
+        document.execCommand("copy");
+        alert("Password copied to clipboard: " + Passwordgen.value);
+      }
+</script>
+</html>
